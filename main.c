@@ -25,11 +25,14 @@ int	main(void)
 	fd = open(filename,O_RDONLY);
 	//Test for text output
 	while((next_line = get_next_line(fd)))
+	{
 		printf("%s",next_line);
-	
+		free(next_line);
+	}
 	//Test for NULL return
 	next_line = get_next_line(fd);
 	printf("%s", next_line);
-	close (fd);
+	if (fd > 0)
+		close (fd);
 	return (0);
 }
